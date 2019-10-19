@@ -1,5 +1,6 @@
 package test.java;
 
+import main.java.HomeNegative;
 import main.java.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,8 @@ public class TaskSel5 {
     static WebDriverWait wait;
     static WebElement preloader;
     static HomePage homePage;
+    static HomeNegative homeNegative;
+
 
 
 
@@ -23,6 +26,7 @@ public class TaskSel5 {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         homePage = new HomePage(driver);
+        homeNegative = new HomeNegative(driver);
 
 
 
@@ -30,11 +34,9 @@ public class TaskSel5 {
 
     @Test
     public static void mainTest() throws InterruptedException {
-
         homePage.isShown()
                 .AskForCall()
                 .ThanksText();
-
 
     }
 

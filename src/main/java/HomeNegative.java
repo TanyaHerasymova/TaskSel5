@@ -6,27 +6,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-public class HomePage {
+public class HomeNegative {
     public WebDriver driver;
     public WebDriverWait wait;
     public WebElement preloader;
 
-    public HomePage(WebDriver driver) {
+    public HomeNegative(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, 10);
     }
 
-    public HomePage isShown() {
+    public HomeNegative Shown() {
         driver.get("http://iteaua-develop.demo.gns-it.com/");
         preloader = driver.findElement(By.id("preload-it"));
         wait.until(ExpectedConditions.visibilityOf(preloader));
         wait.until(ExpectedConditions.invisibilityOf(preloader));
         return this;
     }
-
-    public HomePage AskForCall() {
+    public HomeNegative callBtn() {
         WebElement CallbackBtn = driver.findElement(By.className("callback-btn"));
         wait.until(ExpectedConditions.visibilityOf(CallbackBtn));
         CallbackBtn.click();
@@ -34,24 +31,14 @@ public class HomePage {
 
         WebElement inputField = driver.findElement(By.id("b-contacte__full-name"));
         wait.until(ExpectedConditions.visibilityOf(inputField));
-        inputField.sendKeys("Test");
+        inputField.sendKeys("");
 
         WebElement PhoneField = driver.findElement(By.id("b-contacte-phone-tel"));
         wait.until(ExpectedConditions.visibilityOf(PhoneField));
-        PhoneField.sendKeys("0961234567");
+        PhoneField.sendKeys("");
         WebElement SendCall = driver.findElement(By.xpath("//*[@id=\"callback-form\"]/input[4]"));
         wait.until(ExpectedConditions.visibilityOf(SendCall));
         SendCall.click();
         return this;
     }
-
-        public HomePage ThanksText() {
-            driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p"));
-            String expectedValue = "Спасибо! Наш менеджер свяжется с вами.";
-            String actualValue = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p")).getText();
-            assertEquals(expectedValue, actualValue);
-            return this;
-
-        }
-
 }
