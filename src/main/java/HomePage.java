@@ -43,14 +43,21 @@ public class HomePage {
         wait.until(ExpectedConditions.visibilityOf(SendCall));
         SendCall.click();
         return this;
-    }
 
-        public HomePage ThanksText() {
-            driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p"));
+
+    }
+        public HomePage contacteLoader() {
+        WebElement loaderHiden = driver.findElement(By.className("b-header-contacte-loader hidden"));
+            wait.until(ExpectedConditions.visibilityOf(loaderHiden));
+            wait.until(ExpectedConditions.invisibilityOf(loaderHiden));
+            return this;
+        }
+        public boolean thanksText() {
+            WebElement tnxtxt = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p"));
+
             String expectedValue = "Спасибо! Наш менеджер свяжется с вами.";
             String actualValue = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p")).getText();
-            assertEquals(expectedValue, actualValue);
-            return this;
+            return tnxtxt.isDisplayed();
 
         }
 

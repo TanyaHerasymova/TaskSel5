@@ -16,29 +16,34 @@ public class HomeNegative {
         wait = new WebDriverWait(this.driver, 10);
     }
 
-    public HomeNegative Shown() {
-        driver.get("http://iteaua-develop.demo.gns-it.com/");
-        preloader = driver.findElement(By.id("preload-it"));
-        wait.until(ExpectedConditions.visibilityOf(preloader));
-        wait.until(ExpectedConditions.invisibilityOf(preloader));
-        return this;
-    }
     public HomeNegative callBtn() {
-        WebElement CallbackBtn = driver.findElement(By.className("callback-btn"));
-        wait.until(ExpectedConditions.visibilityOf(CallbackBtn));
-        CallbackBtn.click();
+        WebElement CallBtn = driver.findElement(By.className("callback-btn"));
+        wait.until(ExpectedConditions.visibilityOf(CallBtn));
+        CallBtn.click();
 
 
         WebElement inputField = driver.findElement(By.id("b-contacte__full-name"));
         wait.until(ExpectedConditions.visibilityOf(inputField));
         inputField.sendKeys("");
 
-        WebElement PhoneField = driver.findElement(By.id("b-contacte-phone-tel"));
-        wait.until(ExpectedConditions.visibilityOf(PhoneField));
-        PhoneField.sendKeys("");
-        WebElement SendCall = driver.findElement(By.xpath("//*[@id=\"callback-form\"]/input[4]"));
-        wait.until(ExpectedConditions.visibilityOf(SendCall));
-        SendCall.click();
+        WebElement PhField = driver.findElement(By.id("b-contacte-phone-tel"));
+        wait.until(ExpectedConditions.visibilityOf(PhField));
+        PhField.sendKeys("");
+        WebElement Call = driver.findElement(By.xpath("//*[@id=\"callback-form\"]/input[4]"));
+        wait.until(ExpectedConditions.visibilityOf(Call));
+        Call.click();
+
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("preload-it"))));
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("preload-it"))));
         return this;
+    }
+    public boolean checkIfFrameIsRed(String style) {
+        WebElement inputFrame = driver.findElement(By.xpath("//*[@id=\"b-contacte__full-name\"]//.."));
+        inputFrame.click();
+        String actualString = driver.findElement(By.id("b-contacte__full-name")).getAttribute("style");
+        String expectedString = "border-color: red;";
+
+
+        return inputFrame.isDisplayed();
     }
 }
