@@ -55,6 +55,14 @@ public class TaskSel5 {
     @AfterMethod
     public static void tearDown() {
         driver.quit();
+    }
+    public Object[] [] provider() {
+        return new Object[][] {
+                {"ru-RU"},
+                {},
+                {}
+        };
+    }
 
     }
 
