@@ -52,13 +52,5 @@ public class HomePage {
             wait.until(ExpectedConditions.invisibilityOf(loaderHiden));
             return this;
         }
-        public boolean thanksText() {
-            WebElement tnxtxt = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p"));
-
-            String expectedValue = "Спасибо! Наш менеджер свяжется с вами.";
-            String actualValue = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p")).getText();
-            return tnxtxt.isDisplayed();
-
-        }
 
 }

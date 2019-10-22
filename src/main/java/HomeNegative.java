@@ -37,13 +37,5 @@ public class HomeNegative {
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("preload-it"))));
         return this;
     }
-    public boolean checkIfFrameIsRed(String style) {
-        WebElement inputFrame = driver.findElement(By.xpath("//*[@id=\"b-contacte__full-name\"]//.."));
-        inputFrame.click();
-        String actualString = driver.findElement(By.id("b-contacte__full-name")).getAttribute("style");
-        String expectedString = "border-color: red;";
 
-
-        return inputFrame.isDisplayed();
-    }
 }

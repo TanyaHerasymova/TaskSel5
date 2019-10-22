@@ -2,6 +2,7 @@ package test.java;
 
 import main.java.HomeNegative;
 import main.java.HomePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,8 +32,6 @@ public class TaskSel5 {
         driver.manage().window().maximize();
         homePage = new HomePage(driver);
         homeNegative = new HomeNegative(driver);
-
-
     }
 
     @Test
@@ -40,14 +39,16 @@ public class TaskSel5 {
         homePage.isShown()
                 .AskForCall()
                 .contacteLoader();
-        assertTrue(homePage.thanksText());
+        WebElement tnxTxt = driver.findElement(By.xpath("//div[@class='b-header-contacte-phone-thank hiden']/p"));
+        assertTrue(tnxTxt.isDisplayed());
     }
 
                 @Test
                  public static void CheckNegative() throws InterruptedException {
                     homePage.isShown();
                     homeNegative.callBtn();
-                    assertTrue(homeNegative.checkIfFrameIsRed("\"border-color: red;\""));
+                    WebElement checkIfFrameIsRed = driver.findElement(By.xpath("//*[@id=\"b-contacte__full-name\"]//.."));
+                    assertTrue(checkIfFrameIsRed.isDisplayed());
 
     }
 
